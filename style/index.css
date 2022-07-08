@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+
+.navbar-brand{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.menjadi-penjual-btn{
+    margin-right: 30px;
+}
+
+.login-btn{
+    width: 100px;
+}
+
+#jumbotron{
+    margin-top: 60px;
+    margin-bottom: 5%;
+    margin-right: 60px;
+    margin-left: 60px;
+    box-shadow: 2px 2px 12px rgb(201, 201, 201);
+    background-color: white;
+}
+
+img{
+    height: 400px;
+    width: 600px;
+    border-radius: 6px;
+}
+
+.jumbotron-body{
+    padding: 40px;
+    border-radius: 10px;
+}
+
+.title-jumbotron{
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+}
+
+.subtitle-jumbotron{
+    font-family: 'Poppins', sans-serif;
+    margin-top: 30px;
+}
+
+@media screen and (max-width: 600px){
+    .login-btn{
+        margin-top: 2em;
+    }
+}

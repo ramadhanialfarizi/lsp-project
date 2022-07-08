@@ -13,27 +13,19 @@ if (isset($_POST["login"])) {
     $email = $_POST["email"];
     $password = $_POST["password"];
 
-    // cek apakah yg diketikan oleh user ada di database
     $result = mysqli_query($conn, "SELECT * FROM seller WHERE email = '$email'");
 
-    // cek username
     if (mysqli_num_rows($result) === 1 ) {
 
-        // cek password
         $row = mysqli_fetch_assoc($result);
+
         if (password_verify($password, $row["password"]) ) {
 
-            // set session
-            // bikin sebuah variabel session yg key nya adalah login yang diisi dengan bolean true
             $_SESSION["login"] = true;
-
-            // header = untuk redirrect ke halaman selanjutnya
             header("Location: index.php");
             exit;
-        }
 
-        // password_verify = untuk cek string sama dengan hash
-        // password_verify(string yg blm diacak, string yg sudah diacak)
+        }
 
     } 
 
@@ -42,8 +34,6 @@ if (isset($_POST["login"])) {
         alert ('akun tidak ditemukan');
     </script>";
 }
-
-
 ?>
 
 

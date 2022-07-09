@@ -23,7 +23,7 @@
                             <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                         </li>
                     </ul>
-                    <a href="screen/admin/login-penjual.php" class="nav-link active menjadi-penjual-btn">Login Menjadi Penjual?</a>
+                    <a href="screen/admin/login-penjual.php" class="nav-link active menjadi-penjual-btn">Masuk Sebagai Penjual?</a>
                     <button class="btn btn-outline-dark login-btn" type="button" onclick="location.href='login.php';">Login</button>
                 </div>
             </div>

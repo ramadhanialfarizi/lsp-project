@@ -92,6 +92,7 @@ if( !isset($_SESSION["login"]) ) {
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>aksi</th>
                                             <th>Nama</th>
                                             <th>Email</th>
                                             <th>Foto</th>
@@ -102,6 +103,7 @@ if( !isset($_SESSION["login"]) ) {
                                     <tfoot>
                                         <tr>
                                             <th>No</th>
+                                            <th>aksi</th>
                                             <th>Nama</th>
                                             <th>Email</th>
                                             <th>Foto</th>
@@ -116,6 +118,9 @@ if( !isset($_SESSION["login"]) ) {
                                             </td>
                                             <td class="aksi">
                                                 <button type="button" class="btn btn-outline-danger action">Delete</button>
+                                            </td>
+                                            <td>
+                                                aaa
                                             </td>
                                             <td>
                                                 aaa

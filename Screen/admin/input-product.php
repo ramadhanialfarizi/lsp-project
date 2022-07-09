@@ -1,14 +1,34 @@
-<?php
+<?php 
 require '../../controller/admin/product-crud.php';
 
 session_start();
 
 if( !isset($_SESSION["login"]) ) {
-    header("Location: login-penjual.php");
+    header("Location: login.php");
     exit;
 }
 
-$product = read("SELECT * FROM produk ORDER BY id DESC");
+
+if (isset($_POST["tambah"]) ) {
+
+    if ( input($_POST) > 0 ){
+        echo "
+            <script>
+                alert('data berhasil ditambahkan');
+                document.location.href = 'product.php';
+            </script>
+        ";
+    } else {
+        echo "
+            <script>
+                alert('data gagal ditambahkan');
+                //document.location.href = 'product.php';
+            </script>
+        ";
+    }
+}
+
+
 
 ?>
 
@@ -27,9 +47,7 @@ $product = read("SELECT * FROM produk ORDER BY id DESC");
     
         <!-- css -->
         <link href="../../style/styles.css" rel="stylesheet" />
-        <link href="../../style/button.css?v=<?php echo time(); ?>" rel="stylesheet" />
-        <link href="style/body.css" rel="stylesheet" />
-        <link href="style/font.css" rel="stylesheet" />
+        <link href="../../style/admin/form.css?v=<?php echo time(); ?>" rel="stylesheet" rel="stylesheet" />
     
     </head>
     <body class="sb-nav-fixed">
@@ -82,67 +100,31 @@ $product = read("SELECT * FROM produk ORDER BY id DESC");
             <div id="layoutSidenav_content">
                 <main>
                     <div class="container-fluid px-4">
-                        <h1 class="mt-4">Produk</h1>
+                        <h1 class="mt-4">Upload Produk</h1>
                         <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item active">Produk Anda</li>
+                            <li class="breadcrumb-item active">Upload produk kamu disini</li>
                         </ol>
                         <div class="card mb-4">
-                            <div class="card-header">
-                                <i class="fas fa-table me-1"></i>
-                                Produk
-                            </div>
-                            <div class="card-body">
-                                <table id="datatablesSimple">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>aksi</th>
-                                            <th>Foto Produk</th>
-                                            <th>Nama Produk</th>
-                                            <th>Deskripsi</th>
-                                            <th>harga</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>aksi</th>
-                                            <th>Foto Produk</th>
-                                            <th>Nama Produk</th>
-                                            <th>Deskripsi</th>
-                                            <th>harga</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-                                        <?php $number_table = 1; ?>
-                                        <?php foreach ($product as $row) : ?>
-                                        <tr>
-                                            <td>
-                                                <p><?php echo $number_table; ?></p>
-                                            </td>
-                                            <td class="aksi">
-                                                <a href="update-product.php?id=<?php echo $row["id"]; ?>" class="btn btn-outline-success action">Edit</a>
-                                                <a href ="delete-product.php?id=<?php echo $row["id"]; ?>" onclick="return confirm ('Yakin ?')" class="btn btn-outline-danger action">Delete</a>
-                                            </td>
-                                            <td>
-                                                <img src="../../assets/produk/<?php echo $row["gambar_produk"]; ?>" width="50">
-                                            </td>
-                                            <td>
-                                                <?php echo $row["nama_produk"]; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $row["deskripsi_produk"]; ?>
-                                            </td>
-                                            <td>
-                                                <?php echo $row["harga"]; ?>
-                                            </td>
-                                        </tr>
-                                        <?php $number_table++ ;?>
-                                        <?php endforeach;?>
-                                    </tbody>
-                                </table>
-                                <button type="button" class="btn btn-dark" onclick="location.href='input-product.php';">Tambah Produk</button>
-                            </div>
+                            <!-- form input -->
+                            <form action="" method="post" enctype="multipart/form-data">
+                                <div class="mb-3">
+                                    <label for="formFile" class="form-label">Masukan gambar produk</label>
+                                    <input class="form-control" type="file" id="formFile" name="gambar" require>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Nama produk</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="makanan kucing" name="namaproduk" require>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlTextarea1" class="form-label">Deskripsi produk</label>
+                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="deksripsiproduk" require></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleFormControlInput1" class="form-label">Harga</label>
+                                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Rp 12.000" name="hargaproduk" require>
+                                </div>
+                                <button type="submit" class="btn btn-dark" name="tambah">Tambahkan</button>
+                            </form>
                         </div>
                     </div>
                 </main>

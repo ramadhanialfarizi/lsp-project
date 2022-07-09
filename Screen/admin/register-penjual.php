@@ -7,13 +7,14 @@ if (isset($_POST["register"])) {
     if (register($_POST) > 0) {
         echo "<script>
                 alert ('akun berhasil ditambahkan');
+                document.location.href = 'login-penjual.php';
             </script>";
-            header("Location: login-penjual.php");
 
     } else {
         echo mysqli_error($conn);
         echo "<script>
             alert ('akun gagal ditambahkan');
+            document.location.href = 'login-penjual.php';
         </script>";
     }
 

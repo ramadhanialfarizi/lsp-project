@@ -1,3 +1,41 @@
+<?php 
+require 'controller/user/auth-user.php';
+
+session_start();
+
+if (isset($_SESSION["login"]) ) {
+    header("Location: index.php");
+    exit;
+}
+
+if (isset($_POST["login"])) {
+
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE email = '$email'");
+
+    if (mysqli_num_rows($result) === 1 ) {
+
+        $row = mysqli_fetch_assoc($result);
+
+        if (password_verify($password, $row["password"]) ) {
+
+            $_SESSION["login"] = true;
+            header("Location: screen/user/index.php");
+            exit;
+
+        }
+
+    } 
+
+    $error = true;
+    echo "<script>
+        alert ('akun tidak ditemukan');
+    </script>";
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,7 +59,7 @@
                         <p class="subtitle">Masukan Akun Anda</p>
                         <div class="input-section">
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control" id="floatingInput" name="username">
+                                <input type="email" class="form-control" id="floatingInput" name="email">
                                 <label for="floatingInput">Email</label>
                             </div>
                             <div class="form-floating">

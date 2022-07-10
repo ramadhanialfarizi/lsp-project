@@ -1,10 +1,16 @@
 <?php
+
+require '../../controller/admin/costumer-crud.php';
+
 session_start();
+
 
 if( !isset($_SESSION["login"]) ) {
     header("Location: login-penjual.php");
     exit;
 }
+
+$costumers = read("SELECT * FROM user ORDER BY id DESC");
 
 ?>
 
@@ -95,7 +101,6 @@ if( !isset($_SESSION["login"]) ) {
                                             <th>aksi</th>
                                             <th>Nama</th>
                                             <th>Email</th>
-                                            <th>Foto</th>
                                             <th>Nomor telepon</th>
                                             <th>Alamat</th>
                                         </tr>
@@ -106,35 +111,35 @@ if( !isset($_SESSION["login"]) ) {
                                             <th>aksi</th>
                                             <th>Nama</th>
                                             <th>Email</th>
-                                            <th>Foto</th>
                                             <th>Nomor telepon</th>
                                             <th>Alamat</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                        <?php $number_table = 1; ?>
+                                        <?php foreach ($costumers as $row) : ?>
                                         <tr>
-                                            <td class="video">
-                                                <p>1</p>
+                                            <td>
+                                                <p><?php echo $number_table; ?></p>
                                             </td>
                                             <td class="aksi">
-                                                <button type="button" class="btn btn-outline-danger action">Delete</button>
+                                                <a href ="delete-costumer.php?id=<?php echo $row["id"]; ?>" onclick="return confirm ('Yakin ?')" class="btn btn-outline-danger action">Delete</a>
                                             </td>
                                             <td>
-                                                aaa
+                                                <?php echo $row["nama_lengkap"]; ?>
                                             </td>
                                             <td>
-                                                aaa
+                                                <?php echo $row["email"]; ?>
                                             </td>
                                             <td>
-                                                aaa
+                                                <?php echo $row["nomor_telepon"]; ?>
                                             </td>
                                             <td>
-                                                aaa
-                                            </td>
-                                            <td>
-                                                aaa
+                                                <?php echo $row["alamat"]; ?>
                                             </td>
                                         </tr>
+                                        <?php $number_table++ ;?>
+                                        <?php endforeach;?>
                                     </tbody>
                                 </table>
                             </div>

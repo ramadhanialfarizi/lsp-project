@@ -1,3 +1,26 @@
+<?php 
+require 'controller/user/auth-user.php';
+
+if (isset($_POST["register"])) {
+
+    if (register($_POST) > 0) {
+        echo "<script>
+                alert ('akun berhasil ditambahkan');
+                document.location.href = 'login.php';
+            </script>";
+
+    } else {
+        echo mysqli_error($conn);
+        echo "<script>
+            alert ('akun gagal ditambahkan');
+            document.location.href = 'login.php';
+        </script>";
+    }
+
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,16 +56,20 @@
                                 <label for="floatingInput">Nomor telepon</label>
                             </div>
                             <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="floatingInput" name="alamat">
+                                <label for="floatingInput">Alamat</label>
+                            </div>
+                            <div class="form-floating mb-3">
                                 <input type="password" class="form-control" id="floatingPassword" name="password">
                                 <label for="floatingPassword">Password</label>
                             </div>
                             <div class="form-floating">
-                                <input type="password" class="form-control" id="floatingPassword" name="confirm-password">
+                                <input type="password" class="form-control" id="floatingPassword" name="password2">
                                 <label for="floatingPassword">Confirm Password</label>
                             </div>
                         </div>
                         <div class="button-section">
-                            <button type="submit" class="btn btn-outline-dark" name="login">Register</button>
+                            <button type="submit" class="btn btn-outline-dark" name="register">Register</button>
                         </div>
                     </form>
                 </div>

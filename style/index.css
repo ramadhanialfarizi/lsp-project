@@ -3,6 +3,11 @@
 .navbar-brand{
     font-size: 20px;
     font-weight: bold;
+    font-family: 'Poppins', sans-serif;
+}
+
+.nav-link {
+    font-family: 'Poppins', sans-serif;
 }
 
 .menjadi-penjual-btn{
@@ -11,6 +16,7 @@
 
 .login-btn{
     width: 100px;
+    font-family: 'Poppins', sans-serif;
 }
 
 #jumbotron{
